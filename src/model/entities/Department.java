@@ -16,6 +16,11 @@ public class Department implements Serializable {
 		this.id = id;
 		this.name = name;
 	}
+	
+	public Department(Department obj) {
+		this.id = DepartmentCollection.counter;
+		this.name = obj.name;
+	}
 
 	public Integer getId() {
 		return id;

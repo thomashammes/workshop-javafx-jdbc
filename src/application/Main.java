@@ -8,6 +8,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import model.entities.Department;
+import model.entities.DepartmentCollection;
+import model.services.DepartmentService;
 
 public class Main extends Application {
 	
@@ -16,6 +19,11 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			DepartmentCollection.register(new Department(1, "Books"));
+			DepartmentCollection.register(new Department(2, "Computers"));
+			DepartmentCollection.register(new Department(3, "Electronics"));
+			DepartmentCollection.register(new Department(4, "Fashion"));
+			
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/MainView.fxml"));
 			ScrollPane scrollPane = loader.load();
 			

@@ -1,17 +1,40 @@
 package model.services;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import model.entities.Department;
+import model.entities.DepartmentCollection;
 
 public class DepartmentService {
 
-	public List<Department> findAll() {
-		List<Department> list = new ArrayList<>();
-		list.add(new Department(1, "Books"));
-		list.add(new Department(2, "Computers"));
-		list.add(new Department(3, "Electronics"));
-		return list;
+	public ArrayList<Department> findAll() {
+		return DepartmentCollection.departmentList;
+	}
+	
+	public void registerOrUpdate(Department obj) {
+		
+		if (obj.getId() == null) {
+			registerDepartment(obj);
+		} else {
+			updateDepartment(obj);
+		}
+		
+		/*
+		for (Department d : DepartmentCollection.departmentList) {
+			System.out.println(d);
+		}
+		if (obj.getId() == null) {
+			insertDepartment(obj);
+		} else {
+			updateDepartment(obj);
+		}*/
+	}
+
+	private void updateDepartment(Department obj) {
+		DepartmentCollection.update(obj);
+	}
+
+	private void registerDepartment(Department obj) {
+		DepartmentCollection.register(new Department(obj));
 	}
 }
