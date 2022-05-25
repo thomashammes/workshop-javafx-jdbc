@@ -16,5 +16,9 @@ public class DepartmentCollection {
 		int index = obj.getId() - 1;
 		departmentList.set(index, obj);
 	}
+
+	public static void delete(Department obj) {
+		departmentList.remove(obj);
+	}
 	
 }

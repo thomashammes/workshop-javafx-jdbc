@@ -37,4 +37,8 @@ public class DepartmentService {
 	private void registerDepartment(Department obj) {
 		DepartmentCollection.register(new Department(obj));
 	}
+	
+	public void deleteDepartment(Department obj) {
+		DepartmentCollection.delete(obj);
+	}
 }

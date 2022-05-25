@@ -19,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.entities.Department;
+import model.entities.DepartmentCollection;
 import model.exceptions.ValidationException;
 import model.services.DepartmentService;
 
@@ -92,12 +93,23 @@ public class DepartmentFormController implements Initializable{
 		obj.setId(Utils.tryParseToInt(txtId.getText()));
 		if (txtName.getText() == null || txtName.getText().trim().equals("")) {
 			exception.addError("name", "O campo não pode ser vazio");
+		} else {
+			for (Department department : DepartmentCollection.departmentList) {
+				System.out.println(department.getName());
+				System.out.println(txtName.getText());
+				if (txtName.getText().equals(department.getName()) && !department.getId().toString().equals(txtId.getText())) {
+					exception.addError("name", "O campo não pode ser duplicado");
+				}
+			}	
 		}
-		obj.setName(txtName.getText());
+		
+		System.out.print(exception.getErrors());
 		
 		if (exception.getErrors().size() > 0) {
 			throw exception;			
 		}
+		
+		obj.setName(txtName.getText());
 		
 		return obj;
 	}
