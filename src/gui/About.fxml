@@ -5,10 +5,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox prefHeight="237.0" prefWidth="377.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18">
+<VBox prefHeight="237.0" prefWidth="377.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label text="About">
+      <Label text="Sobre">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -16,7 +15,12 @@
             <Insets bottom="10.0" left="20.0" top="10.0" />
          </padding>
       </Label>
-      <Label text="JavaFX application demo">
+      <Label prefHeight="24.0" prefWidth="377.0" text="Criado por Thomas Hammes e Nathan Rezini para a disciplina de ">
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </Label>
+      <Label prefHeight="21.0" prefWidth="377.0" text="Programação Orientada a Objetdos do professor Alex Rese.">
          <padding>
             <Insets left="20.0" />
          </padding>

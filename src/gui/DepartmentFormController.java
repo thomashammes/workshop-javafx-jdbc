@@ -75,8 +75,7 @@ public class DepartmentFormController implements Initializable{
 			setErrorMessages(e.getErrors());
 		} catch (Exception e){
 			Alerts.showAlert("Error saving objetct", null, e.getMessage(), AlertType.ERROR);
-		}
-		
+		}	
 	}
 	
 	private void notifyDataChangeListeners() {
@@ -95,8 +94,6 @@ public class DepartmentFormController implements Initializable{
 			exception.addError("name", "O campo não pode ser vazio");
 		} else {
 			for (Department department : DepartmentCollection.departmentList) {
-				System.out.println(department.getName());
-				System.out.println(txtName.getText());
 				if (txtName.getText().equals(department.getName()) && !department.getId().toString().equals(txtId.getText())) {
 					exception.addError("name", "O campo não pode ser duplicado");
 				}

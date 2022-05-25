@@ -19,10 +19,9 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			DepartmentCollection.register(new Department(1, "Books"));
-			DepartmentCollection.register(new Department(2, "Computers"));
-			DepartmentCollection.register(new Department(3, "Electronics"));
-			DepartmentCollection.register(new Department(4, "Fashion"));
+			DepartmentCollection.register(new Department(1, "Itens de Batalha"));
+			DepartmentCollection.register(new Department(2, "Poções"));
+			DepartmentCollection.register(new Department(3, "Comidas"));
 			
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/MainView.fxml"));
 			ScrollPane scrollPane = loader.load();

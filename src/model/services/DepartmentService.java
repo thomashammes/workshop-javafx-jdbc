@@ -18,16 +18,6 @@ public class DepartmentService {
 		} else {
 			updateDepartment(obj);
 		}
-		
-		/*
-		for (Department d : DepartmentCollection.departmentList) {
-			System.out.println(d);
-		}
-		if (obj.getId() == null) {
-			insertDepartment(obj);
-		} else {
-			updateDepartment(obj);
-		}*/
 	}
 
 	private void updateDepartment(Department obj) {

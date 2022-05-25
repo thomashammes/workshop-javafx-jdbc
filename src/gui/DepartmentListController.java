@@ -2,6 +2,7 @@ package gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -24,11 +25,13 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.entities.Department;
+import model.entities.DepartmentCollection;
 import model.services.DepartmentService;
 
 public class DepartmentListController implements Initializable, DataChangeListener {
@@ -52,6 +55,12 @@ public class DepartmentListController implements Initializable, DataChangeListen
 
 	@FXML
 	private Button btNew;
+	
+	@FXML
+	private TextField txtSearch;
+	
+	@FXML
+	private Button btSearch;
 
 	private ObservableList<Department> obsList;
 
@@ -60,6 +69,19 @@ public class DepartmentListController implements Initializable, DataChangeListen
 		Stage parentStage = Utils.currentStage(event);
 		Department obj = new Department();
 		createDialogForm(obj, "/gui/DepartmentForm.fxml", parentStage);
+	}
+	
+	@FXML
+	public void onBtSearchAction(ActionEvent event) {
+		Stage parentStage = Utils.currentStage(event);
+		ArrayList<Department> searchDepartments = new ArrayList<>();
+		for (Department department : DepartmentCollection.departmentList) {
+			if (department.getName().toLowerCase().contains(txtSearch.getText().toLowerCase())) {
+				searchDepartments.add(department);
+			}
+		}
+		System.out.print(searchDepartments);
+		updateTableView(searchDepartments);
 	}
 
 	public void setDepartmentService(DepartmentService service) {
@@ -85,6 +107,16 @@ public class DepartmentListController implements Initializable, DataChangeListen
 		}
 		List<Department> list = service.findAll();
 		obsList = FXCollections.observableArrayList(list);
+		tableViewDepartment.setItems(obsList);
+		initEditButtons();
+		initRemoveButtons();
+	}
+	
+	public void updateTableView(ArrayList<Department> searchedDepartments) {
+		if (service == null) {
+			throw new IllegalStateException("Service was null");
+		}
+		obsList = FXCollections.observableArrayList(searchedDepartments);
 		tableViewDepartment.setItems(obsList);
 		initEditButtons();
 		initRemoveButtons();
