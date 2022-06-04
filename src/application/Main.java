@@ -10,11 +10,15 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.entities.Department;
 import model.entities.DepartmentCollection;
-import model.services.DepartmentService;
+import model.entities.HuffmanTree;
 
 public class Main extends Application {
 	
 	private static Scene mainScene;
+	
+	String testCase = "passarinho que anda com morcego acaba dormindo de ponta cabeca";
+	
+	HuffmanTree tree = new HuffmanTree();
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -22,6 +26,20 @@ public class Main extends Application {
 			DepartmentCollection.register(new Department(1, "Itens de Batalha"));
 			DepartmentCollection.register(new Department(2, "Poções"));
 			DepartmentCollection.register(new Department(3, "Comidas"));
+			
+			System.out.println(testCase);
+			
+			tree.listFrequency(testCase);
+			
+			tree.sortList();
+			
+			tree.printList(tree.getList());
+			
+			tree.listToTree();
+			
+			tree.printTree(tree.getRoot());
+		
+			
 			
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/MainView.fxml"));
 			ScrollPane scrollPane = loader.load();
